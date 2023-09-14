@@ -1,0 +1,10 @@
+test1.txt - B1
+test2.txt - false
+test3.txt - A3
+test4.txt - false
+test5.txt - false
+test6.txt - A4
+test7.txt - false
+test8.txt - A8
+test9.txt - false
+test10.txt - B10
