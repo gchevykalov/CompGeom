@@ -4,19 +4,26 @@ class Polygon:
         self.points = []
         self.direction = ">"
 
+def double_s_abc(a, b, c):
+    return (a[0] * b[1] + b[0] * c[1] + a[1] * c[0]) - (b[1] * c[0] + a[1] * b[0] + a[0] * c[1])
+
 def check_ray_edge_intersection(point, edge_point1, edge_point2) -> (-1|0|1): # O(1)
     p1x = edge_point1[0] - point[0]
     p1y = edge_point1[1] - point[1]
     p2x = edge_point2[0] - point[0]
     p2y = edge_point2[1] - point[1]
-    p1p2y = p1y * p2y
-    p1p2y = 1 if p1p2y > 0 else 0 if p1p2y == 0 else -1
+    if (p1y * p2y > 0):
+        return 1
     m = p1x * p2y - p1y * p2x
     m = 1 if m > 0 else 0 if m == 0 else -1
-    if (p1p2y < 0):
-        return m if p1y < 0 else -m
-    if (m == 0 and p1x * p2x <= 0):
-        return p1p2y
+    if (m == 0):
+        if (p1x * p2x <= 0):
+            return 0
+        return 1
+    if (p1y < 0):
+        return -m
+    if (p2y < 0):
+        return m
     return 1
 
 def point_categorization(point, polygon): # O(N)
@@ -32,9 +39,6 @@ def point_categorization(point, polygon): # O(N)
         i += 1
     return result
 
-def double_s_abc(a, b, c):
-    return (a[0] * b[1] + b[0] * c[1] + a[1] * c[0]) - (b[1] * c[0] + a[1] * b[0] + a[0] * c[1])
-
 def check_edge_polygon_intersection(edge_point1, edge_point2, polygon: Polygon) -> (True|False): # O(N)
     vertices = polygon.points
     i = 0
@@ -46,7 +50,7 @@ def check_edge_polygon_intersection(edge_point1, edge_point2, polygon: Polygon) 
         s4 = double_s_abc(vertices[j], vertices[i], edge_point2)
         if (s1 * s2 < 0 and s3 * s4 < 0):
             return True
-        elif (s3 * s4 <= 0 and s1 == 0):
+        elif ((s3 * s4 < 0 or ((s3 == 0 or s4 == 0) and s3 != s4)) and s1 == 0):
             k = j - 1
             k = k if k >= 0 else len(vertices) - 1
             s5 = double_s_abc(vertices[k], vertices[j], vertices[i])
@@ -60,7 +64,7 @@ def check_edge_polygon_intersection(edge_point1, edge_point2, polygon: Polygon) 
                 if ((polygon.direction == ">" and not (s3 <= 0 and s6 <= 0 and s4 <= 0 and s7 <= 0)) or 
                         (polygon.direction == "<" and not (s3 >= 0 and s6 >= 0 and s4 >= 0 and s7 >= 0))):
                     return True
-        elif (s3 * s4 <= 0 and s2 == 0):
+        elif ((s3 * s4 < 0 or ((s3 == 0 or s4 == 0) and s3 != s4)) and s2 == 0):
             k = i + 1
             k = k if k <= len(vertices) - 1 else 0
             s5 = double_s_abc(vertices[j], vertices[i], vertices[k])

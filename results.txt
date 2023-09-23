@@ -3,8 +3,11 @@ test2.txt - false
 test3.txt - A3
 test4.txt - false
 test5.txt - false
-test6.txt - A4
+test6.txt - A6
 test7.txt - false
 test8.txt - A8
 test9.txt - false
 test10.txt - B10
+test11.txt - B11
+test12.txt - B12
+test13.txt - A13
