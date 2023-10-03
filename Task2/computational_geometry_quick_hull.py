@@ -4,6 +4,11 @@ def double_s_abc(a, b, c):
     return (a[0] * b[1] + b[0] * c[1] + a[1] * c[0]) - (b[1] * c[0] + a[1] * b[0] + a[0] * c[1])
 
 def convex_hull(pList: list) -> list:
+    if len(pList) < 2:
+        return pList
+    if len(pList) == 2:
+        return [min(pList), max(pList)]
+    
     convexHullList = []
 
     leftPoint, rightPoint = min(pList), max(pList)

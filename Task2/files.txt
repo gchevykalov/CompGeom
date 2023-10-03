@@ -1,1 +1,4 @@
 test.txt/resTest.txt
+test2.txt/resTest2.txt
+test3.txt/resTest3.txt
+test4.txt/resTest4.txt

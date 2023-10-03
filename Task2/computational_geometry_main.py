@@ -36,13 +36,10 @@ def process_files():
                 if next:
                     continue
                 else:
-                    if len(pointList) < 3:
-                        print(pathin + " - Incorrect input: incorrect number of points (must be >= 3)\n")
-                    else:
-                        hull = convex_hull(pointList)
-                        with open(pathout, "w") as out:
-                            for point in hull:
-                                out.write(str(point[0]) + " " + str(point[1]) + "\n")
+                    hull = convex_hull(pointList)
+                    with open(pathout, "w") as out:
+                        for point in hull:
+                            out.write(str(point[0]) + " " + str(point[1]) + "\n")
 
 
 if __name__ == "__main__":
