@@ -20,16 +20,13 @@ def convex_hull(pList: list) -> list:
     convexHullList += allPointsRight
     convexHullList.append(rightPoint)
     convexHullList += allPointsLeft
-
     finalHull = [convexHullList[0]]
     i = 1
     while i < len(convexHullList) - 1:
         if double_s_abc(convexHullList[i - 1], convexHullList[i], convexHullList[i + 1]) != 0:
             finalHull.append(convexHullList[i])
         i += 1
-    if double_s_abc(convexHullList[-2], convexHullList[-1], convexHullList[0]) != 0:
-            finalHull.append(convexHullList[-1])
-
+    finalHull.append(convexHullList[-1])
     return finalHull
 
 def left_hull(a: list, b: list, pList: list):
